@@ -40,9 +40,7 @@ const Sidebar = ({ users, onlineUsers, selectedUser, setSelectedUser, getMessage
 
 
 
-  const filteredUsers = showOnlineOnly
-    ? users.filter((user) => onlineUsers.includes(user._id))
-    : users;
+  const filteredUsers =  users;
 
     console.log(filteredUsers)
 
