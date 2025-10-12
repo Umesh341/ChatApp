@@ -32,6 +32,10 @@ const PORT = process.env.PORT || 5000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// API routes
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoute);
+
 // ✅ Serve React frontend in production
 if (process.env.NODE_ENV === "production") {
   // Path to built React files (frontend/dist)
@@ -44,10 +48,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(frontendPath, "index.html"));
   });
 }
-
-// API routes
-app.use("/api/auth", authRoutes);
-app.use("/api/messages", messageRoute);
 
 // Start the server
 server.listen(PORT, () => {
