@@ -36,28 +36,35 @@ const styles = {
     transition: "background 0.15s ease",
   },
 };
-const Sidebar = ({ users, onlineUsers, selectedUser, setSelectedUser ,getMessages}) => {
+const Sidebar = ({ users, onlineUsers, selectedUser, setSelectedUser, getMessages }) => {
 
+
+
+  const filteredUsers = showOnlineOnly
+    ? users.filter((user) => onlineUsers.includes(user._id))
+    : users;
+
+    console.log(filteredUsers)
 
   return (
     <aside style={styles.sidebar}>
       <div style={styles.sidebarHeader}>Contacts</div>
       <div style={styles.contactList}>
-        {users.map((user) => (
+        {filteredUsers.map((user) => (
           <div
-            key={user._id}    
+            key={user._id}
             onClick={() => {
-  setSelectedUser(user);
-  getMessages(user._id);
-}}
+              setSelectedUser(user);
+              getMessages(user._id);
+            }}
 
             style={{
               ...styles.contactItem,
-              backgroundColor: 
+              backgroundColor:
                 selectedUser?._id === user._id ? "rgba(255,255,255,0.1)" : "transparent",
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>  
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <span>{user.username}</span>
               <span
                 style={{
@@ -68,12 +75,12 @@ const Sidebar = ({ users, onlineUsers, selectedUser, setSelectedUser ,getMessage
                   display: "inline-block",
                   marginLeft: 8,
                 }}
-              ></span>  
+              ></span>
             </div>
           </div>
         ))}
 
-      
+
       </div>
     </aside>
   )
