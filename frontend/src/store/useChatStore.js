@@ -16,8 +16,8 @@ export const useChatStore = create((set,get) => ({
         set({isUserLoading:true});
         try {
             const response = await axiosInstance.get("/messages/users"); 
-            console.log("response")
-            console.log(response)
+           
+            // console.log(response.data)
             
 
           set({ users: response.data });
@@ -75,8 +75,9 @@ export const useChatStore = create((set,get) => ({
         if(!selectedUser) return;
 
         const socket  = useAuthStore.getState().socket;
-
+         
         socket.on("newMessage", (newMessage) => {
+            alert("jjh")
             if(newMessage.senderId !== selectedUser._id) {return}
             set({messages: [...get().messages,newMessage]})
         })

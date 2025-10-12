@@ -163,13 +163,16 @@ export const checkAuth = (req, res) => {
     try {
 
         // get user id from req.user from auth middleware
+        console.log("inside")
         const userId = req.user._id;
         if(userId){
             res.status(200).json({user: req.user });
         }
   
         else{
-            return res.status(401).json({ message: "Not authorized" });
+            console.log("else")
+            return false;
+
         }   
     
         

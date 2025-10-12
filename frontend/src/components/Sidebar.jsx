@@ -76,7 +76,10 @@ const Sidebar = ({ users, onlineUsers, selectedUser, setSelectedUser, getMessage
               ></span>
             </div>
           </div>
-        ))}
+        )
+      
+    
+    )}
 
 
       </div>

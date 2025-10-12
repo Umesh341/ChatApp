@@ -15,7 +15,7 @@ export default function Home() {
   const messageEndRef = useRef(null)
 
   const {getUsers, users, isUserLoading, isMessageLoading, messages, selectedUser ,setSelectedUser,getMessages, disconnectSocket, subscribeToMessages,unsuscribeFromMessages} = useChatStore();
-  const {onlineUsers} = useAuthStore();
+  const {onlineUsers, authUser} = useAuthStore();
   useEffect(() => {
     getUsers();
   if (!selectedUser?._id) return;
@@ -33,7 +33,7 @@ export default function Home() {
     unsuscribeFromMessages();
   };
 
-}, [selectedUser?._id, getMessages, getUsers, subscribeToMessages, unsuscribeFromMessages]);
+}, [selectedUser?._id, getMessages, getUsers, subscribeToMessages, unsuscribeFromMessages,]);
 
 
 useEffect(()=>{
@@ -127,8 +127,7 @@ useEffect(()=>{
      <Sidebar  users={users} onlineUsers={onlineUsers} selectedUser={selectedUser} setSelectedUser={setSelectedUser}  getMessages={getMessages}   />
 
       {/* Chat container */}
-
-
+    
       <main style={styles.chatContainer}>
 
         { selectedUser ? (<>

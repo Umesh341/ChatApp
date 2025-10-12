@@ -5,13 +5,13 @@ const protectedRoute = async (req, res, next) => {
     const token = req.cookies.jwt;
     if (!token) {
            res.clearCookie('jwt', { httpOnly: true, sameSite: 'lax' });
-        return res.json({message: "not authorized"});
+        return res.tatus(401).json({message: "not authorized"});
     }   
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = await User.findById(decoded.userId).select('-password'); // select all fields except password
         if (!req.user) {
-            return res.status(401).json({ message: "Not authorized" });
+            return res.status(401).json({ message: "Not authorized1234" });
         }
         next();
     } catch (error) {

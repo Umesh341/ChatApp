@@ -17,7 +17,8 @@ function App() {
   
   // get authUser and checkAuth from useAuthStore
   const { authUser, checkAuth, isCheckingAuth , onlineUsers} = useAuthStore();
- console.log(onlineUsers)
+  // console.log("authuser"); console.log(authUser);
+ 
   useEffect(() => {
     checkAuth();  
   }, [checkAuth]);

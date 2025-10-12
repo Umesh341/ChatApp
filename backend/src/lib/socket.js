@@ -14,6 +14,7 @@ const io = new Server(server, {
 //
 
 export function getReceiverSocketId(userId){
+    console.log(userSocketMap)
     return userSocketMap[userId];
 }
 
@@ -22,9 +23,11 @@ const userSocketMap = {}; //{userId: socketId}
 io.on("connection", (socket) => {
     console.log("user connected", socket.id);
 
-    const userId = socket.handshake.query.userId;
+    const userId = socket.handshake.auth;
+
+    console.log(userId)
   
-    if (userId) userSocketMap[userId] = socket.id;
+    if (userId){ userSocketMap[userId.userId] = socket.id; console.log(userSocketMap) }
 
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
 

@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 function Navbar() {
   // get authUser and logout from useAuthStore
   const { authUser, logout } = useAuthStore();
-
-
+   
+ 
   return (
     <>
       <nav style={styles.nav} role="navigation" aria-label="Primary">
@@ -24,7 +24,7 @@ function Navbar() {
           {authUser ? (
             <div style={styles.userArea} aria-live="polite">
               <span style={styles.welcome}>
-                Welcome, {authUser.username}
+                Welcome, {authUser._id}
               </span>
               <Link to={`/profile/${authUser._id}`} style={{ ...styles.btnBase, ...styles.linkBtn }}>
                 Profile
