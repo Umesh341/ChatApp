@@ -62,41 +62,41 @@ export const sendMessage = async (req, res) => {
 
 
 
-        // if (image) {
-        //     // upload image to cloudinary
+        if (image) {
+            // upload image to cloudinary
             
-        //     const uploadedImage = await cloudinary.uploader.upload(image);
-        //     console.log("Cloudinary upload result:", uploadedImage);
-        //     const imageUrl = uploadedImage.secure_url;
+            const uploadedImage = await cloudinary.uploader.upload(image);
+            console.log("Cloudinary upload result:", uploadedImage);
+            const imageUrl = uploadedImage.secure_url;
 
-        //     console.log(imageUrl)
-        //     // create new message     
+            console.log(imageUrl)
+            // create new message     
 
-        //     const newMessage = new Message({
-        //         senderId,
-        //         receiverId,
-        //         text,
-        //         image: imageUrl
-        //     });
-        //     console.log(newMessage)
+            const newMessage = new Message({
+                senderId,
+                receiverId,
+                text,
+                image: imageUrl
+            });
+            console.log(newMessage)
 
-        //     await newMessage.save();
-        //     console.log("send")
-        //     console.log(receiverId)
+            await newMessage.save();
+            console.log("send")
+            console.log(receiverId)
 
-        //     // realtime functionality using socket.io
-        //       const receiverSocketId = getReceiverSocketId(receiverId);
-        // console.log(receiverSocketId)
-        // if (receiverId) {
-        //     io.to(receiverSocketId).emit("newMessage", newMessage);
-        // }
+            // realtime functionality using socket.io
+              const receiverSocketId = getReceiverSocketId(receiverId);
+        console.log(receiverSocketId)
+        if (receiverId) {
+            io.to(receiverSocketId).emit("newMessage", newMessage);
+        }
 
 
 
-        // res.status(201).json(newMessage);
+        res.status(201).json(newMessage);
           
-        // }
-        // else{
+        }
+        else{
         const imageUrl = null;
         const newMessage = new Message({
             senderId,
@@ -118,7 +118,7 @@ export const sendMessage = async (req, res) => {
         }
         res.status(201).json(newMessage);
     
-
+    }
     } catch (error) { console.log("error message: " + error.message); }
 
 }
