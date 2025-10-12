@@ -34,7 +34,7 @@ export const useAuthStore = create((set, get) => ({
             }
 
             if (user) {
-                set({ authUser: user.data.user, isCheckingAuth: false });
+                set({ authUser: user.data, isCheckingAuth: false });
                 get().connectSocket()
                 return;
             }
