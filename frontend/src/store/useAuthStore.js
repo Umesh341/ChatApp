@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import { disconnect } from 'mongoose';
 import { io } from "socket.io-client";
 
-const BASE_URL =import.meta.env.MODE === "development" ? "https://localhost:5001" : "/";
+const BASE_URL ="/";
 
 export const useAuthStore = create((set, get) => ({
 
