@@ -17,7 +17,7 @@ export default function Home() {
   const {getUsers, users, isUserLoading, isMessageLoading, messages, selectedUser ,setSelectedUser,getMessages, disconnectSocket, subscribeToMessages,unsuscribeFromMessages} = useChatStore();
   const {onlineUsers} = useAuthStore();
   useEffect(() => {
-    // getUsers();
+    getUsers();
   if (!selectedUser?._id) return;
   getMessages(selectedUser._id);
 
