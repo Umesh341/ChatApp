@@ -52,10 +52,10 @@ export const useAuthStore = create((set, get) => ({
         }
     },
 
-    signup: async (formData) => {
+    signup: async (data) => {
         set({ isSigningUp: true });
         try {
-            const res = await axiosInstance.post('/auth/signup', formData, { withCredentials: true });
+            const res = await axiosInstance.post('/auth/signup', data, { withCredentials: true });
             toast.success("Signup successful");
             set({ authUser: res.data });
             get().connectSocket()
@@ -67,10 +67,10 @@ export const useAuthStore = create((set, get) => ({
         }
     },
 
-    login: async (formData) => {
+    login: async (data) => {
         set({ isLoggingIn: true });
         try {
-            const res = await axiosInstance.post('/auth/login', formData, { withCredentials: true });
+            const res = await axiosInstance.post('/auth/login', data, { withCredentials: true });
             if(!res){
                 toast.error("user doesnot exist")
             }
