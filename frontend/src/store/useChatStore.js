@@ -1,7 +1,6 @@
 import {create} from "zustand";
 import {axiosInstance} from "../lib/axios";
 import toast from "react-hot-toast";
-import { get } from "mongoose";
 import { data } from "react-router-dom";
 import {useAuthStore} from "./useAuthStore"
 
