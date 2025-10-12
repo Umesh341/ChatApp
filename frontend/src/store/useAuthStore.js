@@ -22,8 +22,9 @@ export const useAuthStore = create((set, get) => ({
 
     checkAuth: async () => {
         try {
-            const user = await axiosInstance.get('/auth/check-auth', { withCredentials: true }
-          );
+            const user = await axiosInstance.get('/auth/check-auth', { withCredentials: true });
+            console.log("user" + user)
+            
             
             if (!user) {
                 console.log("commsd")
