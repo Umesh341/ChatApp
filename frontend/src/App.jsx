@@ -20,6 +20,7 @@ function App() {
  console.log(onlineUsers)
   useEffect(() => {
     checkAuth();
+
   
   }, [checkAuth]);
 
