@@ -26,11 +26,13 @@ app.use(cors(
 ));
 
 const PORT = process.env.PORT ;
-const __dirname = path.resolve();
+const __dirname = "/opt/render/project/src/backend/frontend/dist"
+
 
 if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
-    app.get("*" , (req,res)=>{
+     const frontendPath = path.join(__dirname, "../../frontend/dist"); // ✅ corrected
+  app.use(express.static(frontendPath));
+    app.get(/(.*)/ , (req,res)=>{
         res.sendFile(path.join(__dirname,"frontend", "dist" , "index.html"));
     })
 }
