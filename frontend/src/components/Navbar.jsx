@@ -28,7 +28,7 @@ function Navbar() {
           {authUser ? (
             <div style={styles.userArea} aria-live="polite">
               <span style={styles.welcome}>
-                Welcome, {authUser._id}
+                Welcome, {authUser.username}
               </span>
               <Link to={`/profile/${authUser._id}`} style={{ ...styles.btnBase, ...styles.linkBtn }}>
                 Profile
