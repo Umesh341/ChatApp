@@ -7,10 +7,6 @@ import { useEffect } from 'react';
 function Navbar() {
   // get authUser and logout from useAuthStore
   const { authUser, logout } = useAuthStore();
-  useEffect(()=>{
-    console.log(authUser)
-  },[authUser]) 
- 
 
   return (
     <>
