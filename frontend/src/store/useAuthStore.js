@@ -60,8 +60,8 @@ export const useAuthStore = create((set, get) => ({
             if (!res) {
                 toast.error("user doesnot exist")
             }
-            console.log(res.data)
-            set({ authUser: res.data });
+            const temp = {user : res.data}
+            set({ authUser: temp });
                console.log(authUser)
             set({ isLoggingIn: false });
 
