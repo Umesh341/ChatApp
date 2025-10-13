@@ -6,12 +6,9 @@ import { useEffect } from 'react';
 
 function Navbar() {
   // get authUser and logout from useAuthStore
-  const { authUser, logoutq, checkAuth } = useAuthStore();
+  const { authUser, logout, checkAuth } = useAuthStore();
 
-  useEffect(() => {
-    checkAuth();  
-  }, [checkAuth]);
-
+  console.log(authUser.username)
   return (
     <>
       <nav style={styles.nav} role="navigation" aria-label="Primary">
