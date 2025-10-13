@@ -8,7 +8,7 @@ function Navbar() {
   // get authUser and logout from useAuthStore
   const { authUser, logout, checkAuth } = useAuthStore();
 
-  console.log(authUser.username)
+ 
   return (
     <>
       <nav style={styles.nav} role="navigation" aria-label="Primary">
@@ -25,7 +25,7 @@ function Navbar() {
           {authUser ? (
             <div style={styles.userArea} aria-live="polite">
               <span style={styles.welcome}>
-                Welcome, <p> {authUser.username} </p>
+                Welcome, <p> {authUser.user.username} </p>
               </span>
               <Link to={`/profile/${authUser._id}`} style={{ ...styles.btnBase, ...styles.linkBtn }}>
                 Profile
