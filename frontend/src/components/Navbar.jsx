@@ -1,13 +1,17 @@
 import React from 'react'
 import { useAuthStore } from '../store/useAuthStore.js';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 function Navbar() {
   // get authUser and logout from useAuthStore
   const { authUser, logout } = useAuthStore();
-   
+  useEffect(()=>{
+    console.log(authUser)
+  },[authUser]) 
  
+
   return (
     <>
       <nav style={styles.nav} role="navigation" aria-label="Primary">
