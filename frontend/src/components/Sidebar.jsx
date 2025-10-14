@@ -42,7 +42,7 @@ const Sidebar = ({ users, onlineUsers, selectedUser, setSelectedUser, getMessage
 
   const filteredUsers =  users;
 
-    console.log(filteredUsers)
+    console.log(filteredUsers);
 
   return (
     <aside style={styles.sidebar}>

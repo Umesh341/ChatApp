@@ -62,7 +62,7 @@ export const useAuthStore = create((set, get) => ({
             }
             const temp = {user : res.data}
             set({ authUser: temp });
-               console.log(authUser)
+               
             set({ isLoggingIn: false });
 
             get().connectSocket()
