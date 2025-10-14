@@ -97,7 +97,7 @@ export const useAuthStore = create((set, get) => ({
         if (!authUser) { return; }
 
         const socket = io(BASE_URL, {
-            auth: { userId: authUser._id },
+            auth: { userId: authUser.user._id },
         });
       
         set({ socket:socket });

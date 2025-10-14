@@ -35,7 +35,7 @@ function Navbar() {
                 <div className="flex items-center gap-3" aria-live="polite">
                   <span className="text-sm text-gray-600">
                     Welcome,&nbsp;
-                    {/* <span className="font-medium text-gray-900">{authUser.user.username}</span> */}
+                    <span className="font-medium text-gray-900">{authUser.user.username}</span>
                   </span>
 
                   <button
@@ -99,7 +99,7 @@ function Navbar() {
               <>
                 <div className="px-2 py-2 rounded-md">
                   <span className="text-sm text-gray-600">Welcome,</span>
-                  <div className="text-sm font-medium text-gray-900">{authUser.username}</div>
+                  <div className="text-sm font-medium text-gray-900">{authUser.user.username}</div>
                 </div>
 
 
