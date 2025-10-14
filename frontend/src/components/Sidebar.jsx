@@ -1,8 +1,8 @@
 import React from 'react'
 
 const Sidebar = ({ users, onlineUsers, selectedUser, setSelectedUser, getMessages }) => {
-  
-  const [isOpen, setIsOpen] = React.useState(true);
+
+  const [isOpen, setIsOpen] = React.useState(false);
   const filteredUsers = users;
   console.log(filteredUsers);
 
