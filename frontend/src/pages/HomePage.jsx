@@ -41,145 +41,83 @@ useEffect(()=>{
   messageEndRef.current.scrollIntoView({behavior: "smooth"})
   }
 },[messages])
-  const styles = {
-    container: {
-      display: "flex",
-      height: "91vh",
-      background: "linear-gradient(180deg, #0f1724, #081023 80%)",
-      color: "#e6eef8",
-      fontFamily:
-        'Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-      overflow: "hidden",
-    },
-
- 
-
-    chatContainer: {
-      flex: 1,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-      backgroundColor: "#0b1220",
-      padding: 20,
-    },
-
-    messagesArea: {
-      flex: 1,
-      overflowY: "auto",
-      display: "flex",
-      flexDirection: "column",
-      gap: 10,
-      paddingRight: 10,
-      marginBottom: 12,
-    },
-
-    messageBubble: {
-      alignSelf: "flex-start",
-      background: "#1e293b",
-      padding: "10px 14px",
-      borderRadius: 10,
-      maxWidth: "70%",
-      lineHeight: 1.4,
-      wordBreak: "break-word",
-    },
-
-    ownMessage: {
-      alignSelf: "flex-end",
-      background: "#4f46e5",
-      color: "#fff",
-    },
-
-    inputArea: {
-      display: "flex",
-      gap: 10,
-      borderTop: "1px solid rgba(255,255,255,0.08)",
-      paddingTop: 12,
-      marginTop: 10,
-    },
-
-    input: {
-      flex: 1,
-      padding: "10px 12px",
-      borderRadius: 8,
-      border: "1px solid rgba(255,255,255,0.1)",
-      backgroundColor: "rgba(255,255,255,0.05)",
-      color: "#e6eef8",
-      fontSize: "0.95rem",
-      outline: "none",
-    },
-
-    sendButton: {
-      background: "linear-gradient(90deg, #4f46e5, #06b6d4)",
-      border: "none",
-      color: "#fff",
-      borderRadius: 8,
-      padding: "10px 16px",
-      cursor: "pointer",
-      fontWeight: 500,
-      transition: "opacity .15s ease, transform .1s ease",
-    },
-  };
 
   return (
-    <div style={styles.container}>
+     <div className="flex h-[calc(100vh-4rem)]">
    
       {/* Sidebar */}
      <Sidebar  users={users} onlineUsers={onlineUsers} selectedUser={selectedUser} setSelectedUser={setSelectedUser}  getMessages={getMessages}   />
 
       {/* Chat container */}
-    
-      <main style={styles.chatContainer}>
+  <main className="flex-1 flex flex-col bg-white-600 text-white">
+  {selectedUser ? (
+    <>
+      {/* Chat Header */}
+      <ChatHeader
+        selectedUser={selectedUser}
+        setSelectedUser={setSelectedUser}
+        onlineUsers={onlineUsers}
+     
+      />
 
-        { selectedUser ? (<>
-          <ChatHeader selectedUser={selectedUser} setSelectedUser={setSelectedUser} onlineUsers={onlineUsers} disconnectSocket={disconnectSocket}/>
-           
- 
-         
-        <div style={styles.messagesArea}>
-          {messages.map((msg, index) => (
-           <div  key={index}
-              style={{
-                ...styles.messageBubble,
-                ...(msg.senderId !== selectedUser._id  ? styles.ownMessage : {}),
+      {/* Messages Area */}
+     {/* Messages area */}
+<div
+  className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900"
+  id="messagesContainer"
+>
+  {messages.map((msg, index) => {
+    // keep your existing logic for determining "own" message
+    const isOwn = msg.senderId !== selectedUser?._id;
+
+    return (
+      <div key={index} className={`flex ${isOwn ? "justify-end" : "justify-start"}`}>
+        <div
+          className={`
+            max-w-[80%] sm:max-w-[70%] md:max-w-md lg:max-w-lg
+            p-3 rounded-1xl break-words
+            ${isOwn ? "bg-zinc-400 text-gray-800" : "bg-zinc-200 text-gray-700"}
+          `}
+        >
+          <p className="whitespace-pre-wrap">{msg.text}</p>
+
+          {/* Responsive image */}
+          {msg.image && (
+            <img
+              src={msg.image}
+              alt="Attachment"
+              loading="lazy"
+              onLoad={() => {
+                // optional: scroll again after image loads so the newest message stays visible
+                if (messageEndRef?.current) {
+                  messageEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+                }
               }}
-              ref={messageEndRef} >
-            <div
-             
-            >
-              <p>{msg.text}</p>
-            
-                
-               { msg.image && (
-  <img 
-    src={msg.image} 
-    alt="Message attachment" 
-    style={{
-      width:"400px",
-      height: "auto"
-    }}
-      loading="lazy"
-    ></img>
-  )}
-            </div>
-              
-           
+              className="mt-2 rounded-lg w-full max-w-[400px] h-auto object-cover"
+            />
+          )}
+        </div>
+      </div>
+    );
+  })}
+
+  {/* Scroll sentinel: place the ref here — not on every message */}
+  <div ref={messageEndRef} />
 </div>
-          ))}
-        </div> 
 
-          <MessageInput />
 
-          </>
+      {/* Message Input */}
+      <div className="p-4 border-t border-gray-700">
+        <MessageInput/>
+      </div>
+    </>
+  ) : (
+    <div className="flex-1 flex items-center justify-center text-gray-400">
+      <h2>Select a user to start chatting</h2>
+    </div>
+  )}
+</main>
 
-        ) : (
-          <div style={{textAlign: "center", marginTop: "20%"}}>
-            <h2 >Select a user to start chatting</h2>
-          </div>
-        )}
-
-        {/* Textbox + Send */}
-       
-      </main>
     </div>
 );
 }

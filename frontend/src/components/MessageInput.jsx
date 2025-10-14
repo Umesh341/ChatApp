@@ -51,81 +51,63 @@ const MessageInput = () => {
   }
 
   return (
-    <div>
-
+  <div className="w-full">
   {imagePreview && (
-  <div style={{ position: "relative", display: "inline-block", marginBottom: "10px" }}>
-    <img
-      src={imagePreview}
-      alt="preview"
-      style={{
-        width: "120px",
-        height: "120px",
-        objectFit: "cover",
-        borderRadius: "10px",
-        border: "2px solid #ccc",
-      }}
+    <div className="relative block sm:inline-block mb-3 mx-auto sm:mx-0">
+      <img
+        src={imagePreview}
+        alt="preview"
+        className="w-20 h-20 sm:w-28 sm:h-28 object-cover  border-2 border-gray-300"
+      />
+      <button
+        onClick={removeImage}
+        aria-label="Remove image"
+        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm shadow-md hover:bg-red-600 transition"
+      >
+        ×
+      </button>
+    </div>
+  )}
+
+  <form
+    onSubmit={handlesendMessage}
+    className="flex flex-col sm:flex-row items-center gap-2 w-full"
+  >
+    <input
+      type="text"
+      placeholder="Type a message"
+      value={text}
+      onChange={(e) => setText(e.target.value)}
+      className="w-full sm:flex-1 bg-gray-100 text-gray-900 placeholder-gray-500 px-3 py-2 focus:outline-none "
     />
+
+    {/* hidden file input */}
+    <input
+      type="file"
+      ref={fileInputRef}
+      onChange={handleImageChange}
+      className="hidden"
+    />
+
     <button
-      onClick={removeImage}
-      style={{
-        position: "absolute",
-        top: "-6px",
-        right: "-6px",
-        background: "red",
-        color: "white",
-        border: "none",
-        borderRadius: "50%",
-        width: "24px",
-        height: "24px",
-        cursor: "pointer",
-        fontWeight: "bold",
-      }}
+      type="button"
+      onClick={() => fileInputRef.current?.click()}
+      className="w-full sm:w-auto bg-gray-700 text-white px-3 py-2  hover:bg-gray-600 transition"
+      aria-label="Upload image"
     >
-      ×
+      Upload Image
     </button>
-  </div>
-)}
 
-      <form action="" onSubmit={handlesendMessage}>
-         
-      <input type="text" placeholder='type messages' value={text} onChange={(e)=> setText(e.target.value)} />
-     
-
-  <input
-    type="file"
-    ref={fileInputRef}
-    onChange={handleImageChange}
-    style={{ display: "none" }}
-  />
-
-  <button
-  type='button'
-
-    onClick={() => fileInputRef.current?.click()}
-    style={{
-      backgroundColor: "#ff4d4d",
-      color: "white",
-      border: "none",
-      borderRadius: "8px",
-      padding: "8px 16px",
-      cursor: "pointer",
-      fontWeight: "bold",
-      transition: "0.3s ease",
-    }}
+    <button
+      type="submit"
+      className="w-full sm:w-auto bg-green-600 text-white px-4 py-2  hover:bg-green-700 transition"
+      aria-label="Send message"
     >
-  
-    Upload Image
-  </button>
+      Send
+    </button>
+  </form>
+</div>
 
-  <button type="submit" > Send </button>
-
-
-
-     
-
-      </form>
-      </div>
   )
 }
 
