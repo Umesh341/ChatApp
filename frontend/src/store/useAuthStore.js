@@ -43,7 +43,8 @@ export const useAuthStore = create((set, get) => ({
         try {
             const res = await axiosInstance.post('/auth/signup', data, { withCredentials: true });
             toast.success("Signup successful");
-            set({ authUser: res.data });
+               const temp = {user : res.data}
+            set({ authUser: temp });
             get().connectSocket()
         } catch (error) {
             console.log(error.message);
@@ -72,6 +73,7 @@ export const useAuthStore = create((set, get) => ({
         } catch (error) {
             console.log(error.message);
             toast.error("Login failed");
+            set({ isLoggingIn: false });
         }
     },
 
