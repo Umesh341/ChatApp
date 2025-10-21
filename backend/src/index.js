@@ -9,6 +9,35 @@ import { app, server } from "./lib/socket.js";
 import path from "path";
 import { fileURLToPath } from "url"; // ✅ for ESM
 
+
+
+
+
+
+
+const url = `https://chatapp-6euq.onrender.com/`;
+const interval = 30000;
+
+function reloadWebsite() {
+  axios
+    .get(url)
+    .then((response) => {
+      console.log("website reloded");
+    })
+    .catch((error) => {
+      console.error(`Error : ${error.message}`);
+    });
+}
+
+setInterval(reloadWebsite, interval);
+
+
+
+
+
+
+
+
 // Load environment variables
 dotenv.config();
 
@@ -27,6 +56,10 @@ app.use(
 );
 
 const PORT = process.env.PORT || 5000;
+
+
+
+
 
 // ✅ Proper __dirname handling for ES modules
 const __filename = fileURLToPath(import.meta.url);
