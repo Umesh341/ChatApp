@@ -11,13 +11,8 @@ import { fileURLToPath } from "url"; // ✅ for ESM
 import axios from "axios";
 
 
-
-
-
-
-
 const url = `https://chatapp-6euq.onrender.com/`;
-const interval = 600000;
+const interval = 60000;
 
 function reloadWebsite() {
   axios
