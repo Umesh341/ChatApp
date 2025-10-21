@@ -17,7 +17,7 @@ import axios from "axios";
 
 
 const url = `https://chatapp-6euq.onrender.com/`;
-const interval = 30000;
+const interval = 600000;
 
 function reloadWebsite() {
   axios
