@@ -11,21 +11,21 @@ import { fileURLToPath } from "url"; // ✅ for ESM
 import axios from "axios";
 
 
-const url = `https://chatapp-6euq.onrender.com/`;
-const interval = 600000;
+// const url = `https://chatapp-6euq.onrender.com/`;
+// const interval = 600000;
 
-function reloadWebsite() {
-  axios
-    .get(url)
-    .then((response) => {
-      console.log("website reloded");
-    })
-    .catch((error) => {
-      console.error(`Error : ${error.message}`);
-    });
-}
+// function reloadWebsite() {
+//   axios
+//     .get(url)
+//     .then((response) => {
+//       console.log("website reloded");
+//     })
+//     .catch((error) => {
+//       console.error(`Error : ${error.message}`);
+//     });
+// }
 
-setInterval(reloadWebsite, interval);
+// setInterval(reloadWebsite, interval);
 
 
 
